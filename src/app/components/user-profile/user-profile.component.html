@@ -1,0 +1,11 @@
+<h1>this is user profile</h1>
+<h3>name:{{name.toUpperCase()}}, status: {{status}}, salary:{{salary}}</h3>
+<button [disabled]="isDisabled">click me</button>
+<h1>input changes: {{inputVal}}</h1>
+<h1>input changes: {{inputVal2}}</h1>
+<input type="text" [(ngModel)]="inputVal">
+<div>
+    @for(user of users;track user.name){
+        <h4>name:{{user.name}},status:{{user.status?"intern":"unknown"}},doj:{{user.doj}}</h4>
+    }
+</div>

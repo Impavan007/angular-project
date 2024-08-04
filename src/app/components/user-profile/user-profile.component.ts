@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, Component, EventEmitter, Input, numberAttribute, Output } from '@angular/core';
+import { booleanAttribute, Component, ElementRef, EventEmitter, Input, numberAttribute, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../../models/user';
 import { CountrycodePipe } from '../../pipes/countrycode.pipe';
+import { HighlightDirective } from '../../directives/highlight.directive';
 
 function FormatName(value:string){
   return "hi" + value
@@ -10,7 +11,7 @@ function FormatName(value:string){
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [FormsModule,CommonModule,CountrycodePipe],
+  imports: [FormsModule,CommonModule,CountrycodePipe,HighlightDirective],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
@@ -22,7 +23,26 @@ export class UserProfileComponent {
   sendData(){
     this.myEvent.emit({name:this.name,newSalary:25000});
   }
-Name = "ramesh"
+  @ViewChild("heading")heading?:ElementRef
+
+  constructor(){
+    console.log("constructor called")
+  }
+  ngOnInit(){
+    console.log("ngOnInt called")
+  }
+
+  ngOnDestroy(){
+    console.log("onDestroy called");
+  }
+  ngOnChanges(changes:SimpleChanges):void{
+    console.log("ngOnChange called",changes);
+  }
+  ngAfterViewInit():void{
+   console.log("ngAfterViewInit",this.heading?.nativeElement.textContent)
+  }
+  
+/*Name = "ramesh"
 status='single'
 Salary=40000
 isDisabled=false
@@ -35,6 +55,6 @@ onChange(e:Event){
   this.inputVal=value;
   console.log(value);
   this.inputVal2=value;
-}
+}*/
 
 }

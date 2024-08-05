@@ -4,11 +4,14 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { CommonModule } from '@angular/common';
 import { User } from '../models/user';
 import { JokesComponent } from './components/jokes/jokes.component';
+import { BComponent } from './components/b/b.component';
+import { AComponent } from './components/a/a.component';
+import { CComponent } from './components/c/c.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserProfileComponent,CommonModule,JokesComponent],
+  imports: [RouterOutlet,UserProfileComponent,CommonModule,JokesComponent,AComponent,BComponent,CComponent],
   templateUrl: './app.component.html',
   
   styleUrl: './app.component.css'

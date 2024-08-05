@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, Component, ElementRef, EventEmitter, Input, numberAttribute, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
+import { booleanAttribute, Component, ElementRef, EventEmitter, input, Input, numberAttribute, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../../models/user';
 import { CountrycodePipe } from '../../pipes/countrycode.pipe';
@@ -16,12 +16,15 @@ function FormatName(value:string){
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
-  @Input({alias:"username",transform:FormatName}) name="";
+ // @Input({alias:"username",transform:FormatName}) name="";
+ name= input("",{
+  alias:"username"
+ })
   @Input({transform:booleanAttribute}) isSingle!:boolean;
   @Input({transform:numberAttribute}) salary!:number;
   @Output() myEvent = new EventEmitter<User>();
   sendData(){
-    this.myEvent.emit({name:this.name,newSalary:25000});
+    this.myEvent.emit({name:this.name(),newSalary:25000});
   }
   @ViewChild("heading")heading?:ElementRef
 
@@ -42,7 +45,7 @@ export class UserProfileComponent {
    console.log("ngAfterViewInit",this.heading?.nativeElement.textContent)
   }
   
-/*Name = "ramesh"
+Name = "ramesh"
 status='single'
 Salary=40000
 isDisabled=false
@@ -55,6 +58,6 @@ onChange(e:Event){
   this.inputVal=value;
   console.log(value);
   this.inputVal2=value;
-}*/
+}
 
 }
